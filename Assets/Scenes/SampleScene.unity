@@ -404,6 +404,15 @@ MonoBehaviour:
   resultText: {fileID: 1457246621}
   statusText: {fileID: 1763438403}
   button: {fileID: 382200559}
+  onRecognized:
+    m_PersistentCalls:
+      m_Calls: []
+  onRecordStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onRecordEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1263932545
 Transform:
   m_ObjectHideFlags: 0

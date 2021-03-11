@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -32,6 +33,12 @@ public class WitRecognizer : MonoBehaviour
     public async Task<string> GetRecognitionResultAsync(byte[] data)
     {
         var response = await GetRecognitionHttpResponseAsync(data);
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            var er = await response.Content.ReadAsStringAsync();
+            var resp = JsonUtility.FromJson<Response>(er);
+            Debug.LogError(resp.error);
+        }
         var content = await response.Content.ReadAsStringAsync();
         return JsonUtility.FromJson<Response>(content).text;
     }
@@ -40,4 +47,5 @@ public class WitRecognizer : MonoBehaviour
 public class Response
 {
     public string text;
+    public string error;
 }
